@@ -1,5 +1,4 @@
 import React , {useState,useEffect}from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 export const Shop = () => {
@@ -53,10 +52,22 @@ export const Shop = () => {
                             <Card.Body>
                                 <Card.Title>{product.phone_name}</Card.Title>
                                 <Card.Text>
-                                    <p>{product.phone_storage}{product.phone_ram}</p>
+                                    <p>Brand:{product.phone_brand}</p>
+                                    <p>storage:{product.phone_storage} ram:{product.phone_ram}</p>
+                                    <p>Camera:{product.phone_camera}</p>
                                     <p>Price : {product.phone_price}</p>
                                 </Card.Text>
-                                <Button onClick={(e) => addToCart(product._id, 1)}className="btn btn-md btn-info">Add to cart</Button>
+                                <form>
+                                    <input type='hidden' value={product._id}/>
+                                    <input type='hidden' value={product.phone_name}/>
+                                    <input type='hidden' value={product.phone_storage}/>
+                                    <input type='hidden' value={product.phone_ram}/>
+                                    <input type='hidden' value={product.phone_price}/>
+                                    <input type='hidden' value={product.phone_image}/>
+                                    <input type='hidden' value={product.phone_brand}/>
+                                    <input type='hidden' value={product.phone_camera}/>
+                                    <input type='submit' value='add t0 cart'/>
+                                </form>
                             </Card.Body>
                         </Card>
                     </div>

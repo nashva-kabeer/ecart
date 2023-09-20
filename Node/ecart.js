@@ -11,25 +11,8 @@ app.use(cors());
 
 app.use(express.static('./images'))
 
-var PhoneSchema = mongoose.Schema({
-    phone_name: String,
-    phone_brand: String,
-    phone_price: String,
-    phone_ram: String,
-    phone_storage: String,
-    phone_camera: String,
-    phone_image: String
-})
+var Shop = require('./shoping')
 
-var Phone = mongoose.model('Phone',PhoneSchema);
-
-app.get('/',(req,res) => {
-    Phone.find({}).then((response) => {
-        console.log(response);
-        res.json(response);
-    }).catch((err)=>{
-        console.log(err);
-    })
-});
+app.use("/",Shop);
 
 app.listen(8000);
