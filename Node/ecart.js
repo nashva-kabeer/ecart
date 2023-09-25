@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 mongoose.connect("mongodb://127.0.0.1/ewebdb");
 
 app.use(bodyparser.urlencoded({extended: true}));
-app.use(bodyparser.json({limit:'50mb' ,extended: true}));
+app.use(bodyparser.json());
 app.use(cors());
 
 app.use(express.static('./images'))

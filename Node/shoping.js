@@ -6,7 +6,6 @@ const Cart = require('./model/cart');
 
 router.get('/',(req,res) => {
     Phone.find({}).then((response) => {
-        console.log(response);
         res.json(response);
     }).catch((err)=>{
         console.log(err);
@@ -15,7 +14,6 @@ router.get('/',(req,res) => {
 
 router.get("/cart",(req,res)=>{
     Cart.find({}).then((response)=>{
-        console.log(response);
         res.json(response);
     }).catch((err)=>{
         console.log(err);
@@ -23,41 +21,56 @@ router.get("/cart",(req,res)=>{
 });
 
 router.post("/cart",(req,res)=>{
+
     var product = req.body;
-    Cart.find({}).then((response1)=>{
-        if(!product.name){
-            var newCart = new Cart({
-                phone_name: product.name,
-                phone_brand: product.brand,
-                phone_price: product.price,
-                phone_ram: product.ram,
-                phone_storage: product.storage,
-                phone_camera: product.camera,
-                phone_image: product.image,
-                quantity: 1,
-                subTotal: quantity*price
-            })
-            newCart.save().then((response1) => {
-                res.json(response1);
-            }).catch((err) => {
-                console.log(err)
-            })
-        }else{
-            let count = 0;
-            for(let i =0;i<Cart.length;i++){
-                if(Cart.phone_name === name){
-                    Cart.quantity += 1;
-                    count++;
-                }
+        console.log(product.phone_name);
+
+    Cart.findOne({ phone_name: product.phone_name }).then((foundProduct) => {
+        console.log(foundProduct);
+        if (foundProduct) {
+            console.log(foundProduct);
+            if (product.quantityChange === 1) {
+                foundProduct.quantity += 1;
+            } else if (product.quantityChange === -1 && foundProduct.quantity > 0) {
+                foundProduct.quantity -= 1;
             }
+            foundProduct.subtotal = foundProduct.quantity * foundProduct.phone_price;
+            foundProduct.save().then((updatedProduct) => {
+                res.json(updatedProduct);
+                console.log(foundProduct.subtotal);
+                console.log(foundProduct.quantity);
+            }).catch((err) => {
+                console.log(err);
+                res.status(500).json({ error: 'Internal server error' });
+            });
+        } else {
+            var newCart = new Cart({
+                phone_name: product.phone_name,
+                phone_price: product.phone_price,
+                phone_image: product.phone_image,
+                quantity: 1,
+                subtotal: product.phone_price * 1 
+            });
+
+            newCart.save().then((response) => {
+                res.json(response);
+            }).catch((err) => {
+                console.log(err);
+            });
         }
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err);
-    })
+    });
 });
 
-/*router.delete("/cart/empty-cart",(req,res)=>{
-    
-})*/
+router.delete("/empty-cart", async (req, res) => {
+    try {
+      await Cart.deleteMany({});
+      res.status(204).json({ message: "Cart emptied successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
 
 module.exports = router;
