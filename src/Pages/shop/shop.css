@@ -1,0 +1,39 @@
+.shop {
+    padding: 20px;
+    text-align: center;
+  }
+  .title {
+    margin-bottom: 20px;
+  }
+  .products {
+    display: inline-block;
+    margin: 10px;
+  }
+  .card {
+    width: 18rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  .card-img-top {
+    max-height: 200px;
+  }
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .card-text {
+    font-size: 1rem;
+  }
+  .btn-add-to-cart {
+    background-color: #007bff;
+    border-radius: 12px;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .cart-container {
+    margin-top: 20px;
+    text-align: left;
+  }

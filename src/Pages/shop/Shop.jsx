@@ -1,6 +1,7 @@
 import React , {useState,useEffect}from 'react';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import './shop.css';
 
 export const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -55,7 +56,7 @@ export const Shop = () => {
                                     <p>Camera:{product.phone_camera}</p>
                                     <p>Price : {product.phone_price}</p>
                                 </Card.Text>
-                                <Button onClick={() => addToCart(product.phone_name,product.phone_image,product.phone_price)}className="btn btn-primary btn-sm">Add To Cart</Button>
+                                <Button onClick={() => addToCart(product.phone_name,product.phone_image,product.phone_price)}className="btn-add-to-cart">Add To Cart</Button>
                             </Card.Body>
                         </Card>
                     </div>

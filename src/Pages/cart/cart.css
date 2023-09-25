@@ -1,0 +1,51 @@
+.title {
+margin-bottom: 20px;
+}
+.cart {
+display: inline-block;
+margin: 10px;
+}
+.card {
+width: 18rem;
+border: 1px solid #ccc;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.card-img-top {
+max-height: 200px;
+}
+.card-title {
+font-size: 1.25rem;
+font-weight: bold;
+margin-top: 10px;
+}
+.card-text {
+font-size: 1rem;
+}
+.cart-container {
+margin-top: 20px;
+text-align: left;
+}
+.btn-quantity {
+background-color: #5f6d81;
+border-radius: 8px;
+color: #fff;
+border: none;
+padding: 5px 10px;
+cursor: pointer;
+}
+.btn-empty-cart {
+background-color: #dc3545;
+color: #fff;
+border: none;
+padding: 5px 10px;
+cursor: pointer;
+}
+.grand-total {
+font-size: 1.5rem;
+font-weight: bold;
+margin-top: 20px;
+}
+.error-message {
+color: #ff0000;
+margin-top: 10px;
+}
